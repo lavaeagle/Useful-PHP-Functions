@@ -211,16 +211,15 @@ function truncateCharacters($string, $maxChars=16) {
 }
 
 /*  Create a unique id
---------------------------------------*/
-function uniqueId($length=30) {
-    $salt       = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".time();
-    $len        = strlen($salt);
-    $makepass   = '';
-    mt_srand(10000000*(double)microtime());
-    for ($i = 0; $i < $length; $i++) {
-        $makepass .= $salt[mt_rand(0,$len - 1)];
-    }
-    return $makepass;
+--------------------*/
+function uniqueId($length = 30){
+    $rounds = ceil($length / 13);
+    $string = '';
+    
+    for($i = 0; $i < $rounds; $i++)
+        $string .= uniqid();
+    
+    return substr($string, 0, $length);
 }
 
 ?>
