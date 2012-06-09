@@ -205,7 +205,7 @@ function truncateString($phrase, $max_words=10) {
 
 function truncateCharacters($string, $maxChars=16) {
     if(strlen($string) > $maxChars)
-        $string = substr($string, 0, $maxChars) . '...';
+        $string = substr($string, 0, $maxChars);
 
     return $string;
 }
@@ -220,6 +220,29 @@ function uniqueId($length = 30){
         $string .= uniqid();
     
     return substr($string, 0, $length);
+}
+
+/*  Check if haystack begins with needle
+--------------------------------------*/
+function beginsWith($needle, $haystack){
+    return (substr($haystack, 0, strlen($needle)) == $needle);
+}
+
+/*  Return what comes after needle in haystack
+--------------------------------------------*/
+function after($needle, $haystack){
+    $pos = strpos($haystack, $needle);
+    if($pos !== false){
+        return substr($haystack, $pos);
+    }else {
+        return '';
+    }
+}
+
+/*  trim, ltrim, rtrim in one function
+------------------------------------*/
+function trimString($string, $left = '', $right = ''){
+	return rtrim(ltrim(trim($string), $left), $right);
 }
 
 ?>
