@@ -1,4 +1,3 @@
-<?php
 /*  Uses PHP's filter_var to check for valid URL
  --------------------------------------*/
 function isUrl($url) {
